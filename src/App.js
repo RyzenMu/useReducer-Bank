@@ -14,21 +14,21 @@ function reducer(state, action) {
         case 'deposit150':
             if (state.accountStatus === 'closed') return state;
             return {...state, balance: state.balance + 150}
-        break;
+
         case 'withdraw50':
             if (state.accountStatus === 'closed') return state;
             return {...state, balance: state.balance - 50}
-            break;
+
 
         case 'requestLoan5000':
             if (state.accountStatus === 'closed') return state;
             return {...state, balance: state.balance + 5000, loan: state.loan + 5000, loanStatus: 'open'};
-            break;
+
 
         case 'payloan':
             if (state.accountStatus === 'closed') return state;
             return {...state, balance: state.balance - 5000, loan: state.loan-5000, loanStatus: 'closed'};
-            break;
+
 
         case 'close':
             if (state.accountStatus === 'closed') return state;
@@ -39,7 +39,7 @@ function reducer(state, action) {
             if (state.balance === 0 && state.loan === 0) {
                 return initialState;
             }
-            break;
+
 
         default:
             throw new Error(`Unknown action type ${action.type}`);
