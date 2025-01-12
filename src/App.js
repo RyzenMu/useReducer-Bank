@@ -5,7 +5,6 @@ const initialState = {
     accountStatus: 'closed',
     balance: 0,
     loan: 0,
-    loanStatus: 'closed',
 }
 
 function reducer(state, action) {
@@ -15,15 +14,22 @@ function reducer(state, action) {
         case 'deposit150':
             if (state.accountStatus === 'closed') return state;
             return {...state, balance: state.balance + 150}
+        break;
         case 'withdraw50':
             if (state.accountStatus === 'closed') return state;
             return {...state, balance: state.balance - 50}
+            break;
+
         case 'requestLoan5000':
             if (state.accountStatus === 'closed') return state;
             return {...state, balance: state.balance + 5000, loan: state.loan + 5000, loanStatus: 'open'};
+            break;
+
         case 'payloan':
             if (state.accountStatus === 'closed') return state;
             return {...state, balance: state.balance - 5000, loan: state.loan-5000, loanStatus: 'closed'};
+            break;
+
         case 'close':
             if (state.accountStatus === 'closed') return state;
             if (state.balance !== 0 || state.loan !== 0) {
@@ -33,13 +39,17 @@ function reducer(state, action) {
             if (state.balance === 0 && state.loan === 0) {
                 return initialState;
             }
+            break;
+
         default:
             throw new Error(`Unknown action type ${action.type}`);
+            break;
+
     }
 }
 
 function App() {
-    const [{accountStatus, balance, loan, loanStatus}, dispatch] = useReducer(reducer, initialState);
+    const [{accountStatus, balance, loan}, dispatch] = useReducer(reducer, initialState);
   return (<>
 
           <h1>useReducer bank Account</h1>
