@@ -39,11 +39,11 @@ function reducer(state, action) {
             if (state.balance === 0 && state.loan === 0) {
                 return initialState;
             }
-
+            break;
 
         default:
             throw new Error(`Unknown action type ${action.type}`);
-            
+
 
     }
 }
